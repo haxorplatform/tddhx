@@ -6,13 +6,20 @@ Supports both `sync` and `async` testing with small code footprint.
 Use the `Metadata` feature of Haxe to tag which methods are tests and also add extra information like Description and Author for better team coordination.  
   
 # Install
-`haxelib install git tddhx https://github.com/haxorplatform/tddhx`  
+`haxelib git tddhx https://github.com/haxorplatform/tddhx`  
   
 # Usage
 To create test classes the procedure is really simple:  
 ```haxe
 class MyTestSuite : Test
 {
+
+  //Creation callback.
+  override private function OnTestCreate():Void
+  {
+    verbose = true; //will output using 'trace'
+  }
+  
   @Test("This is a sync test.")
   @TestDescription("This some test I've made as example.","Eduardo")
   function testFirst(a : Assert)
