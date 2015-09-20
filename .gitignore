@@ -4,3 +4,5 @@ src/.DS_Store
 src/haxor/.DS_Store
 src/haxor/test/.DS_Store
 node_modules/
+/src/example
+/src/Main.hx
