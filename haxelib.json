@@ -1,0 +1,12 @@
+{
+  "name": "tddhx",
+  "url" : "https://github.com/haxorplatform/tddhx/",
+  "license": "MIT",
+  "tags": ["js", "unit", "tdd", "test"],
+  "description": "Test Driven Development for Haxe",
+  "version": "0.1.0",
+  "releasenote": "Alpha",
+  "contributors": ["Henrique Dias", "Eduardo Pons"],
+  "dependencies": [],
+  "classPath": "src"
+}
