@@ -116,12 +116,26 @@ class Test
 	}	
 	
 	/**
+	 * Creates the closest possible stub for the informed type.
+	 * @param	p_type
+	 * @return
+	 */
+	public function Stub(p_type : Class<Dynamic>=null):Dynamic
+	{	
+		var t : Class<Dynamic> = p_type;
+		if (t == null) return { };	
+		return Type.createInstance(p_type, []);
+	}
+	
+	/**
 	 * Unqueues a test and execute it.
 	 */
 	private function UnqueueTest():Void
 	{
+		if (m_buffer == null) return;
 		if (m_buffer.length <= 0)
 		{			
+			m_buffer = null;
 			var is_success :Bool = (fail <= 0) && (timeout <= 0);
 			OnTestComplete(is_success);
 			if(verbose)trace("======= success["+success+"] fail["+fail+"] timeout["+timeout+"] =======");
@@ -201,7 +215,7 @@ class Test
 			is_error = true;
 			TestError(m, err);
 			UnqueueTest();
-			return;
+			return;			
 		}
 		
 		if (!is_async)

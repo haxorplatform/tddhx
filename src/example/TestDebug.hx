@@ -1,9 +1,25 @@
 package example;
 
+import example.TestDebug.SomeClass;
 import haxe.Timer;
 import haxe.unit.Assert;
 import haxe.unit.Test;
 import js.Error;
+
+class SomeClass
+{
+	public var a : Bool = false;
+	public var b : Int  = 0;
+	public var c(get, never):String;
+	private function get_c():String { return m_c; }
+	private var m_c : String = "stub";
+	public function new()
+	{
+		a = true;
+		b = 1;
+		m_c = "new";
+	}	
+}
 
 /**
  * ...
@@ -75,7 +91,20 @@ class TestDebug extends Test
 		{			
 			a.True(true, "True checking!");
 			a.Done(); //Must call done to signal async end.			
-		},5000);
+		},2000);
+	}
+	
+	
+	@Test("Let's STUB!")
+	@TestDescription("Just a little playing with stubs!", "Author")
+	function testStub(a:Assert):Void
+	{
+		if (force) { a.True(true); a.Done(); return; }
+		var s0 : SomeClass = new SomeClass();
+		var s1 : SomeClass = Stub(SomeClass);		
+		trace(s0);
+		trace(s1);
+		a.Equal(s0.c, s1.c, "They should be equal!");				
 	}
 	
 	@Test("Let's throw some error!")
@@ -83,6 +112,8 @@ class TestDebug extends Test
 	function testForceError(a:Assert):Void
 	{
 		if (force) { a.True(true); a.Done(); return; }
-		throw new Error("LOL Fail!");
+		var err : Error = new Error("LOL Fail!");
+		throw err;
 	}
+	
 }
