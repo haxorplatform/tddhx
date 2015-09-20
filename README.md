@@ -6,7 +6,7 @@ Supports both `sync` and `async` testing with small code footprint.
 Use the `Metadata` feature of Haxe to tag which methods are tests and also add extra information like Description and Author for better team coordination.  
   
 # Install
-`haxelib install git tddhx`  
+`haxelib install git tddhx https://github.com/haxorplatform/tddhx`  
   
 # Usage
 To create test classes the procedure is really simple:  
